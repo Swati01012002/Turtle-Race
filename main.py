@@ -21,6 +21,13 @@ def get_number_of_racers():
 
 def race(colors):
     turtles = create_turtles(colors)
+    while True:
+        for racer in turtles:
+            distance = random.randrange(1, 20)
+            racer.forward(distance)
+            x, y = racer.pos()
+            if y >= HEIGHT //2 -10:
+                return colors[turtles.index(racer)]
 
 def create_turtles(colors):
     turtles = []
@@ -45,3 +52,6 @@ racers = get_number_of_racers()
 init_turtle()
 random.shuffle(COLORS)
 colors = COLORS[:racers]
+winner = race(colors)
+print("The winner of the race is: " + winner.capitalize() + " Turtle")
+time.sleep(5)
